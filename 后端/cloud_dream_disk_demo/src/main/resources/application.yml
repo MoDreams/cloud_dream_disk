@@ -1,0 +1,67 @@
+spring:
+  profiles:
+    active: dev
+---
+#开发环境
+spring:
+  config:
+    activate:
+      on-profile: dev
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/cloud_dream_disk
+  #redis配置
+  data:
+    redis:
+      port: 6379
+      host: localhost
+  #邮箱配置
+  mail:
+    host: smtp.qq.com
+    username: 1215967079@qq.com
+    #授权码
+    password: xxxxxxxxxxxxx
+    default-encoding: UTF-8
+    port: 587
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+      enabled: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.cloud_disk.cloud_dream_disk.pojo
+storage:
+  AvatarRootUrl: "D:/Cloud_dream_disk/user_pic/" #头像根目录
+  FileRootUrl: "D:/Cloud_dream_disk/storage/" #文件存储根目录
+  recycleBinRootUrl: "D:/Cloud_dream_disk/recycleBin/" #回收站根目录
+  ChunkingRootUrl: "D:/Cloud_dream_disk/chunking/" #分片上传存储根目录
+  ShardingSize: 10485760 #分片大小
+server:
+  port: 8080
+---
+#测试环境
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 8081
+---
+#生成环境
+spring:
+  config:
+    activate:
+      on-profile: pro
+server:
+  port: 8082

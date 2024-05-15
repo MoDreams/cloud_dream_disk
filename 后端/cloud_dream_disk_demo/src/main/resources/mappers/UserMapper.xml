@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud_disk.cloud_dream_disk.mapper.UserMapper">
+    <!--    动态SQL-->
+    <update id="UpdateInfo" parameterType="com.cloud_disk.cloud_dream_disk.pojo.User">
+        update user
+        <set>
+            <if test="username!=null">
+                Username = #{username}
+            </if>
+            <if test="phone!=null">
+                ,Phone = #{phone}
+            </if>
+            <if test="dateOfBirth!=null">
+                ,Date_of_Birth = #{dateOfBirth}
+            </if>
+        </set>
+        where UserCardId=#{userCardID}
+    </update>
+</mapper>
